@@ -30,7 +30,16 @@ export const ListView = () => {
               <LoadingSpinners />
             </div>
            ):(
+            <>
              <IssueList issues={issues} onStateChange={setState} state={state}/>
+             <div className='flex justify-between items-center'>
+              <button className='p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all'>Anterior</button>
+              <span>
+                1
+              </span>
+              <button className='p-2 bg-blue-500 rounded-md hover:bg-blue-700 transition-all'>Siguiente</button>
+             </div>
+            </>
            )
         }
       </div>
