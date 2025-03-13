@@ -74,7 +74,7 @@ export interface Reactions {
 
 export enum State {
     Open = "open",
-    Close = 'close',
+    Close = "close",
 }
 
 export interface SubIssuesSummary {

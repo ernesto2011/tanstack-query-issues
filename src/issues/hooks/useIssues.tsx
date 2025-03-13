@@ -4,7 +4,8 @@ import { getIssues } from "../actions"
 export const useIssues = ()=>{
     const issueQuery = useQuery({
         queryKey:['Issues'],
-        queryFn: getIssues
+        queryFn: getIssues,
+        staleTime: 1000 * 60
     })
     return{
         issueQuery,
