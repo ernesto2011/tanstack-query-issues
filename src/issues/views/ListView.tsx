@@ -4,13 +4,13 @@ import { LabelPicker } from '../components/LabelPicker';
 import { useIssues } from '../hooks';
 
 export const ListView = () => {
-  const  {issueQuery}= useIssues()
-  const issues = issueQuery.data ?? []
+  const  {issuesQuery}= useIssues()
+  const issues = issuesQuery.data ?? []
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 mt-5">
       <div className="col-span-1 sm:col-span-2">
         {
-          issueQuery.isLoading
+          issuesQuery.isLoading
            ? (
             <div className='flex justify-center items-center w-full h-56'>
               <LoadingSpinners />
