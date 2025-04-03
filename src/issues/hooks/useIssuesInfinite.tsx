@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { useInfiniteQuery} from "@tanstack/react-query"
 import { State } from "../interfaces"
 import { getIssues } from "../actions"
 
@@ -8,10 +8,17 @@ interface Props {
     selectedLabels: string[]
 }
 export const useIssuesInfinite = ({state, selectedLabels}:Props)=>{
-    const issuesQuery = useQuery({
-        queryKey:['Issues',{state, selectedLabels}],
-        queryFn:() => getIssues(state, selectedLabels, 1),
-        staleTime: 1000 * 60
+    const issuesQuery = useInfiniteQuery({
+        queryKey:['Issues','infinite',{state, selectedLabels}],
+        queryFn:({pageParam, queryKey}) => {
+            const  [,,args]= queryKey
+            const {state, selectedLabels} = args as Props
+
+            return getIssues(state, selectedLabels, pageParam)
+        },
+        staleTime: 1000 * 60,
+        initialPageParam:0,
+        getNextPageParam: (lastPage, pages)=> lastPage.length > 0 ? pages.length +1 : undefined,
     })
 
     return{
